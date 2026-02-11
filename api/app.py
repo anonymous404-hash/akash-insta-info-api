@@ -1,21 +1,22 @@
-export default async function handler(req, res) {
-  const { username } = req.query;
-  const targetUser = username || "1sortex";
-  const apiUrl = `https://isal.isalhackerdeveloper.workers.dev/info?username=${targetUser}`;
+from flask import Flask, request, jsonify
+import requests
 
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+app = Flask(__name__)
 
-    // Aapka Branding add kar diya
-    const customResponse = {
-      ...data,
-      "developer": "AKASHHACKER",
-      "status": "Success"
-    };
+@app.route('/api')
+def get_info():
+    username = request.args.get('username', '1sortex')
+    url = f"https://isal.isalhackerdeveloper.workers.dev/info?username={username}"
+    
+    try:
+        response = requests.get(url)
+        data = response.json()
+        
+        # Aapka Branding
+        data['developer'] = "AKASHHACKER"
+        
+        return jsonify(data)
+    except:
+        return jsonify({"error": "API Down", "developer": "AKASHHACKER"}), 500
 
-    res.status(200).json(customResponse);
-  } catch (error) {
-    res.status(500).json({ error: "API Down", developer: "AKASHHACKER" });
-  }
-}
+# Vercel ko is 'app' ki zaroorat hoti hai
