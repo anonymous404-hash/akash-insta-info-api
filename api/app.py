@@ -19,7 +19,7 @@ def get_info():
         # --- RE-BRANDING LOGIC ---
         # Purane credits ko overwrite karna
         data['developer'] = DEV_HANDLE
-        data['owner'] = "Akash Exploits"
+        data['owner'] = "@Akash Exploits"
         data['powered_by'] = "TITAN HYPERION V6"
         data['support'] = f"https://t.me/Akash_Exploits_bot"
         
