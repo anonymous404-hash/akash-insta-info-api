@@ -10,7 +10,7 @@ DEV_HANDLE = "@Akash_Exploits_bot"
 def get_info():
     username = request.args.get('username', '1sortex')
     # Source API URL
-    url = f"https://isal.isalhackerdeveloper.workers.dev/info?username={username}"
+    url = f"https://synax-id-info.synaxbots.workers.dev/info?username={username}"
     
     try:
         response = requests.get(url, timeout=10)
